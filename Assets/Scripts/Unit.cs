@@ -7,7 +7,7 @@ public class Unit : MonoBehaviour {
 	protected UnitStats _myStats;
 
 
-	public void TakeDamage(int damage)
+	public virtual void TakeDamage(int damage)
 	{
 		_myStats.Health -= damage;
 

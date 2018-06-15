@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour {
 	[SerializeField] private GameObject _countdownRoot;
 	[SerializeField] private Text _countdownText;
 	[SerializeField] private Text _anyKeyText;
+	[SerializeField] private Text _healthText;
 
 	public static UIController Instance;
 
@@ -43,5 +44,10 @@ public class UIController : MonoBehaviour {
 	public void EnableAnykeyText()
 	{
 		_anyKeyText.gameObject.SetActive(true);
+	}
+
+	public void SetHealthText(string text)
+	{
+		_healthText.text = text;
 	}
 }
