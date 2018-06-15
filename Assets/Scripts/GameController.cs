@@ -35,6 +35,10 @@ public class GameController : MonoBehaviour {
 	void Start()
 	{
 		StartCoroutine(CountDown());
+
+		InputController.Instance.AddGetKeyDownInput(KeyCode.Escape, () => {
+			Application.Quit();
+		});
 	}
 	
 	// Update is called once per frame

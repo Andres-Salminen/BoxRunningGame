@@ -15,6 +15,7 @@ public class PlayerController : Unit {
 	// Use this for initialization
 	void Start () {
 		_meshRenderer = GetComponent<MeshRenderer>();
+		
 		_myStats = _playerStatsTemplate;
 
 		_rigidBody = GetComponent<Rigidbody>();
