@@ -389,6 +389,11 @@ Prefab:
       propertyPath: _spawnPoints.Array.size
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 114843109716480282, guid: 2502c61acda5d064c9ac0780097b95e4,
+        type: 2}
+      propertyPath: _enemyPrefabs.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4522235720222602, guid: 2502c61acda5d064c9ac0780097b95e4, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -513,6 +518,18 @@ Prefab:
       propertyPath: _timeBetweenSpawnsRandomisation
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114843109716480282, guid: 2502c61acda5d064c9ac0780097b95e4,
+        type: 2}
+      propertyPath: _enemyPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 1732568196195412, guid: 9ac7a5f3c04c9074d8c3b1a95ffb31fc,
+        type: 2}
+    - target: {fileID: 114843109716480282, guid: 2502c61acda5d064c9ac0780097b95e4,
+        type: 2}
+      propertyPath: _enemyPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 1686845740419914, guid: 789a20cd248b7164fb77c4b647d2fc97,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2502c61acda5d064c9ac0780097b95e4, type: 2}
   m_IsPrefabParent: 0

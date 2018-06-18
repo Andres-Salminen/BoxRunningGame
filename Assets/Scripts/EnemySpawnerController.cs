@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawnerController : MonoBehaviour {
 
-	[SerializeField] private GameObject _enemyPrefab;
+	[SerializeField] private GameObject[] _enemyPrefabs;
 	[SerializeField] private Transform[] _spawnPoints;
 
 	[SerializeField] private int _maxConcurrentEnemies = 60;
@@ -45,7 +45,8 @@ public class EnemySpawnerController : MonoBehaviour {
 
 	private void InstantiateAndInitializeEnemy(Transform spawnPoint)
 	{
-		EnemyController enemy = GameObject.Instantiate(_enemyPrefab, spawnPoint.position, Quaternion.identity).GetComponent<EnemyController>();
+		int enemyIndex = Random.Range(0, _enemyPrefabs.Length);
+		EnemyController enemy = GameObject.Instantiate(_enemyPrefabs[enemyIndex], spawnPoint.position, Quaternion.identity).GetComponent<EnemyController>();
 		enemy.SetTarget(_playerTransform);
 		enemy.SetSpawnerController(this);
 		Vector3 newPosition = enemy.transform.position;
