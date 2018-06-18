@@ -80,4 +80,9 @@ public class PlayerController : Unit {
 	{
 		_meshRenderer.material.color = Color.green;
 	}
+
+	private void OnDestroy()
+	{
+		InputController.Instance.DirtyCallbacks();
+	}
 }

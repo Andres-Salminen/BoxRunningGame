@@ -17,6 +17,8 @@ public class InputController : MonoBehaviour {
 
 	public static InputController Instance;
 
+	private bool _callbacksDirtied;
+
 
 	void Awake () {
 		if (Instance == null)
@@ -46,6 +48,8 @@ public class InputController : MonoBehaviour {
 			}
 		}
 
+		if (_callbacksDirtied)
+			RemoveBrokenCallbacks();
 
 	}
 
@@ -69,5 +73,46 @@ public class InputController : MonoBehaviour {
 		};
 
 		_getKeyDownCallbackList.Add(newInputPair);
+	}
+
+	private void RemoveBrokenCallbacks()
+	{
+		_callbacksDirtied = false;
+		List<KeyCallbackPair> removeList = new List<KeyCallbackPair>();
+
+		for (int i = 0; i < _getKeyCallbackList.Count; ++i)
+		{
+			if (_getKeyCallbackList[i].Callback.Target != null 
+			&& _getKeyCallbackList[i].Callback.Target.ToString() == "null")
+				removeList.Add(_getKeyCallbackList[i]);
+		}
+
+		for (int i = 0; i < removeList.Count; ++i)
+		{
+			_getKeyCallbackList.Remove(removeList[i]);
+			Debug.Log("Broken callback removed.");
+		}
+
+		removeList.Clear();
+
+		for (int i = 0; i < _getKeyDownCallbackList.Count; ++i)
+		{
+			if (_getKeyDownCallbackList[i].Callback.Target != null 
+			&& _getKeyDownCallbackList[i].Callback.Target.ToString() == "null")
+				removeList.Add(_getKeyDownCallbackList[i]);
+		}
+
+		for (int i = 0; i < removeList.Count; ++i)
+		{
+			_getKeyDownCallbackList.Remove(removeList[i]);
+			Debug.Log("Broken callback removed.");
+		}
+
+		removeList.Clear();
+	}
+
+	public void DirtyCallbacks()
+	{
+		_callbacksDirtied = true;
 	}
 }
