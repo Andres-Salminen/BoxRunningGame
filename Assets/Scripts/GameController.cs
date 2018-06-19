@@ -26,19 +26,28 @@ public class GameController : MonoBehaviour {
 	void Awake () {
 		if (Instance == null)
 			Instance = this;
-		else
+		else if (Instance != this)
 			Destroy(this);
 
 		_enemySpawner = GetComponent<EnemySpawnerController>();
+
+		Debug.Log("Awake called.");
 	}
 
 	void Start()
 	{
-		StartCoroutine(CountDown());
+		if (CheckIfValid())
+		{
+			StartCoroutine(CountDown());
 
-		InputController.Instance.AddGetKeyDownInput(KeyCode.Escape, () => {
-			Application.Quit();
-		});
+			InputController.Instance.AddGetKeyDownInput(KeyCode.Escape, () => {
+				Application.Quit();
+			});
+		}
+		else
+		{
+			Debug.LogError("Scene is missing necessary components, the game will not work.");
+		}
 	}
 	
 	// Update is called once per frame
@@ -82,5 +91,13 @@ public class GameController : MonoBehaviour {
 		}
 		UIController.Instance.HideCountdownText();
 		StartGame();
+	}
+
+	private bool CheckIfValid()
+	{
+		if (PlayerPrefab == null || UIController.Instance == null || _enemySpawner == null || InputController.Instance == null)
+			return false;
+		else
+			return true;
 	}
 }

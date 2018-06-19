@@ -17,7 +17,7 @@ public class UIController : MonoBehaviour {
 	void Awake () {
 		if (Instance == null)
 			Instance = this;
-		else
+		else if (Instance != this)
 			Destroy(this);
 	}
 	
